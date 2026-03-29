@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiAi Dhairya | AI Content Creator & Tech Enthusiast</title>
+    <meta name="description" content="Welcome to the official website of DigiAi Dhairya. Discover the latest in Artificial Intelligence, YouTube tutorials, and top AI tools.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- AI Digital Neural Network Background -->
+    <canvas id="ai-network"></canvas>
+
+    <header class="navbar glass-panel">
+        <div class="container nav-content">
+            <div class="logo">
+                <a href="#hero" class="nav-brand">
+                    <img src="logo.png" alt="DigiAi Logo" class="nav-logo">
+                    <span><span class="neon-text">DigiAi</span> Dhairya</span>
+                </a>
+            </div>
+            
+
+
+            <nav class="nav-links">
+                <a href="#about">About Me</a>
+                <a href="#feeds">Social Feeds</a>
+                <a href="#tools">AI Tools</a>
+                <a href="#prompts">Prompts Library</a>
+                <a href="#newsletter" class="btn-small btn-primary">Join Community</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="hero" class="hero-section container">
+            <div class="hero-content">
+                <div class="badge glass-panel"><i class="fas fa-robot"></i> AI Content Creator</div>
+                <h1 class="hero-title">Mastering <span class="neon-gradient">Artificial Intelligence</span> for the Future.</h1>
+                <p class="hero-subtitle">Welcome to DigiAi Dhairya's Hub. I explore the latest AI tools, create in-depth tutorials, and help you stay ahead in the tech revolution.</p>
+                <div class="hero-cta">
+                    <a href="https://www.youtube.com/@DigiAi_Dhairya" target="_blank" class="btn btn-primary neon-box">
+                        <i class="fab fa-youtube"></i> Subscribe on YouTube
+                    </a>
+                    <a href="https://www.instagram.com/digiai_dhairya/" target="_blank" class="btn btn-secondary glass-panel">
+                        <i class="fab fa-instagram"></i> Follow on IG
+                    </a>
+                    <a href="#feeds" class="btn btn-secondary glass-panel">
+                        Latest Feeds <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- A futuristic abstract shape purely made with CSS -->
+                <div class="abstract-shape">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="core-logo">AI</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section container">
+            <div class="about-grid">
+                <div class="about-image glass-panel neon-box interactive-card">
+                    <!-- Professional Profile Photo -->
+                    <img src="about-me.png" alt="DigiAi Dhairya Profile Photo" class="profile-img">
+                </div>
+                <div class="about-content">
+                    <h2>Meet <span class="neon-gradient">DigiAi Dhairya</span></h2>
+                    <p class="lead-text">Hi, I'm Dhairya. I decode the complexity of Artificial Intelligence to make it accessible for everyone.</p>
+                    <p>With a rapidly growing community across YouTube, Instagram, and Facebook, my mission is to empower creators, professionals, and students with the latest AI tools and prompt engineering techniques.</p>
+                    <p>Whether you're looking to automate your daily workflow, edit videos at the speed of light, or generate stunning digital artwork—you've come to exactly the right place.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card glass-panel">
+                            <h3 class="neon-text">100+</h3>
+                            <p>AI Tutorials</p>
+                        </div>
+                        <div class="stat-card glass-panel">
+                            <h3 class="neon-text">10k+</h3>
+                            <p>Community</p>
+                        </div>
+                        <div class="stat-card glass-panel">
+                            <h3 class="neon-text">24/7</h3>
+                            <p>Tech Updates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Feeds Section -->
+        <section id="feeds" class="feeds-section container">
+            <div class="section-header">
+                <h2>My <span class="neon-text">Latest</span> Updates</h2>
+                <p>Catch my newest videos, reels, and posts across all platforms.</p>
+            </div>
+            
+            <div class="feeds-grid">
+                <!-- YouTube Feed -->
+                <div class="feed-card yt-feed glass-panel interactive-card">
+                    <div class="feed-header">
+                        <i class="fab fa-youtube yt-icon"></i>
+                        <h3>Latest on YouTube</h3>
+                    </div>
+                    <!-- Replace the iframe src with your latest video embed link -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="feed-footer text-center mt-2">
+                        <a href="https://www.youtube.com/@DigiAi_Dhairya" target="_blank" class="btn-text">Watch Channel <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Instagram Feed -->
+                <div class="feed-card ig-feed glass-panel interactive-card">
+                    <div class="feed-header">
+                        <i class="fab fa-instagram ig-icon"></i>
+                        <h3>Latest Reel</h3>
+                    </div>
+                    <!-- Mockup for IG Reel -->
+                    <a href="https://www.instagram.com/digiai_dhairya/" target="_blank" class="ig-mockup">
+                        <div class="ig-thumbnail">
+                            <i class="fas fa-play-circle play-overlay"></i>
+                            <div class="ig-user-overlay">
+                                <img src="logo.png" alt="User">
+                                <span>digiai_dhairya</span>
+                            </div>
+                        </div>
+                        <p class="ig-caption">Tap to watch the latest AI trick on Instagram! 🚀✨</p>
+                    </a>
+                    <div class="feed-footer text-center mt-2">
+                        <a href="https://www.instagram.com/digiai_dhairya/" target="_blank" class="btn-text">Follow on IG <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Facebook Feed -->
+                <div class="feed-card fb-feed glass-panel interactive-card">
+                    <div class="feed-header">
+                        <i class="fab fa-facebook fb-icon"></i>
+                        <h3>Latest Post</h3>
+                    </div>
+                    <a href="https://www.facebook.com/profile.php?id=61585233787216" target="_blank" class="fb-mockup">
+                        <div class="fb-post-header">
+                            <img src="logo.png" alt="User">
+                            <div>
+                                <strong>DigiAi Dhairya</strong>
+                                <span>Just now · 🌎</span>
+                            </div>
+                        </div>
+                        <p class="fb-caption">Check out this new workflow that completely automates video editing using AI!</p>
+                        <div class="fb-thumbnail">
+                            <i class="fas fa-external-link-alt overlay-icon"></i>
+                        </div>
+                    </a>
+                    <div class="feed-footer text-center mt-2">
+                        <a href="https://www.facebook.com/profile.php?id=61585233787216" target="_blank" class="btn-text">See on Facebook <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="platform-stats-grid mt-4">
+                <a href="https://www.youtube.com/@DigiAi_Dhairya" target="_blank" class="platform-stat-card glass-panel interactive-card">
+                    <div class="stat-icon-wrapper yt-bg"><i class="fab fa-youtube"></i></div>
+                    <div class="stat-details">
+                        <h3 class="stat-number neon-text">10.5K</h3>
+                        <p class="stat-label">YouTube Subscribers</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/digiai_dhairya/" target="_blank" class="platform-stat-card glass-panel interactive-card">
+                    <div class="stat-icon-wrapper ig-bg"><i class="fab fa-instagram"></i></div>
+                    <div class="stat-details">
+                        <h3 class="stat-number neon-text">8.2K</h3>
+                        <p class="stat-label">Instagram Followers</p>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61585233787216" target="_blank" class="platform-stat-card glass-panel interactive-card">
+                    <div class="stat-icon-wrapper fb-bg"><i class="fab fa-facebook"></i></div>
+                    <div class="stat-details">
+                        <h3 class="stat-number neon-text">5.4K</h3>
+                        <p class="stat-label">Facebook Followers</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- AI Tools Directory -->
+        <section id="tools" class="tools-section container">
+            <div class="section-header">
+                <h2>My AI <span class="neon-text">Tool Stack</span></h2>
+                <p>The premium gear I use to build, design, and automate.</p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="tool-card glass-panel interactive-card">
+                    <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>ChatGPT Plus</h3>
+                    <p>My daily driver for scripting, coding, and brainstorming ideas effortlessly.</p>
+                </div>
+                <!-- Tool 2 -->
+                <div class="tool-card glass-panel interactive-card">
+                    <div class="tool-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Midjourney</h3>
+                    <p>Generating out-of-this-world thumbnails and visual concepts for videos.</p>
+                </div>
+                <!-- Tool 3 -->
+                <div class="tool-card glass-panel interactive-card">
+                    <div class="tool-icon"><i class="fas fa-video"></i></div>
+                    <h3>CapCut & Premiere</h3>
+                    <p>Editing raw footage into dynamic, fast-paced tech tutorials and reels.</p>
+                </div>
+                <!-- Tool 4 -->
+                <div class="tool-card glass-panel interactive-card">
+                    <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                    <h3>ElevenLabs</h3>
+                    <p>Ultra-realistic AI voiceovers for b-roll segments and shorts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompts Library Section -->
+        <section id="prompts" class="prompts-section container">
+            <div class="section-header">
+                <h2>The <span class="neon-text">Prompts</span> Library</h2>
+                <p>Unlock the true power of AI with my personal battle-tested prompts.</p>
+            </div>
+
+            <div class="prompts-grid">
+                <!-- Prompt 1 -->
+                <div class="prompt-card glass-panel interactive-card">
+                    <div class="prompt-header">
+                        <i class="fas fa-camera-retro"></i>
+                        <h3>Cinematic Concept Art</h3>
+                    </div>
+                    <div class="prompt-body">
+                        <span class="badge prompt-badge">Midjourney v6</span>
+                        <div class="prompt-text neon-box">
+                            "A hyper-realistic cinematic portrait of a cyberpunk hacker in Tokyo, neon lights reflecting in their eyes, 8k resolution, photorealistic, shot on 35mm lens --ar 16:9"
+                        </div>
+                    </div>
+                    <div class="prompt-output">
+                        <h4>Expected Output:</h4>
+                        <div class="output-visual output-cyberpunk">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <p class="output-desc">A stunning, highly detailed futuristic portrait with vibrant blue and purple neon rim lighting.</p>
+                    </div>
+                </div>
+
+                <!-- Prompt 2 -->
+                <div class="prompt-card glass-panel interactive-card">
+                    <div class="prompt-header">
+                        <i class="fas fa-pen-nib"></i>
+                        <h3>The Master Copywriter</h3>
+                    </div>
+                    <div class="prompt-body">
+                        <span class="badge prompt-badge">ChatGPT / Claude</span>
+                        <div class="prompt-text neon-box">
+                            "Act as a world-class direct response copywriter. Write a high-converting Facebook Ad hook for an AI video editing course. Use the AIDA framework and keep it under 50 words."
+                        </div>
+                    </div>
+                    <div class="prompt-output text-output">
+                        <h4>Expected Output:</h4>
+                        <div class="fake-chat-bubble">
+                            "Stop spending hours editing! 🛑 Discover how to let AI edit your viral videos in seconds. Click here to grab the ultimate AI Editing Blueprint before the price doubles! 🚀"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt 3 -->
+                <div class="prompt-card glass-panel interactive-card">
+                    <div class="prompt-header">
+                        <i class="fas fa-code"></i>
+                        <h3>The Bug Squasher</h3>
+                    </div>
+                    <div class="prompt-body">
+                        <span class="badge prompt-badge">ChatGPT / Dev</span>
+                        <div class="prompt-text neon-box">
+                            "Act as a strict Senior Software Engineer. Review the following code block. Identify any security vulnerabilities, performance bottlenecks, and provide a perfectly optimized, refactored version."
+                        </div>
+                    </div>
+                    <div class="prompt-output text-output">
+                        <h4>Expected Output:</h4>
+                        <div class="fake-chat-bubble code-bubble">
+                            <span class="text-green">✓ Optimization found: O(n²) reduced to O(n)</span><br>
+                            <span class="text-blue">ⓘ Consider using HashMaps instead of arrays for cleaner logic. Here is the refactored code...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter-section container">
+            <div class="newsletter-box glass-panel neon-box">
+                <div class="newsletter-content">
+                    <h2>Join the <span class="neon-text">AI Revolution</span></h2>
+                    <p>Get exclusive prompts, deep dives, and tech news delivered straight to your inbox every week.</p>
+                    <form id="subscribeForm" class="subscribe-form">
+                        <input type="email" placeholder="Enter your email address..." required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                    <p id="formMessage" class="form-message" style="display: none;">Welcome to the future! 🚀</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="nav-brand">
+                    <img src="logo.png" alt="DigiAi Logo" class="nav-logo">
+                    <h3 class="neon-text logo-font">DigiAi Dhairya</h3>
+                </div>
+                <p>Exploring the boundaries of technology and artificial intellgence.</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@DigiAi_Dhairya" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/digiai_dhairya/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61585233787216" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter/X"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DigiAi Dhairya. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
