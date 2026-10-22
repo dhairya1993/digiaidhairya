@@ -41,6 +41,14 @@ if (subscribeForm) {
             
             // Log for dev viewing
             console.log(`New subscriber: ${email}`);
+
+            // Google Analytics 4 Event
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', {
+                    'event_category': 'newsletter',
+                    'event_label': 'AI Starter Pack'
+                });
+            }
         }, 1500);
     });
 }
@@ -324,6 +332,13 @@ if (copySiteLinkBtn) {
             await navigator.clipboard.writeText(siteUrl);
             if (copyLinkText) copyLinkText.textContent = 'Copied!';
             showToast('Website link copied! Share with friends 🚀', 'fas fa-link');
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', {
+                    'method': 'copy_link',
+                    'content_type': 'website',
+                    'item_id': siteUrl
+                });
+            }
             setTimeout(() => {
                 if (copyLinkText) copyLinkText.textContent = 'Copy Link';
             }, 2500);
@@ -351,6 +366,13 @@ toolTabButtons.forEach(btn => {
         btn.classList.add('active');
         const targetPane = document.getElementById(targetTabId);
         if (targetPane) targetPane.classList.add('active');
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'view_tool_tab', {
+                'event_category': 'ai_tools',
+                'tab_id': targetTabId
+            });
+        }
     });
 });
 
@@ -367,6 +389,13 @@ async function copyToClipboard(text, successMsg = 'Copied to clipboard!') {
         document.execCommand('copy');
         document.body.removeChild(textarea);
         showToast(successMsg, 'fas fa-check-circle');
+    }
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'copy_tool_output', {
+            'event_category': 'engagement',
+            'event_label': successMsg
+        });
     }
 }
 
@@ -442,6 +471,13 @@ if (btnGenHook) {
             btnGenHook.disabled = false;
             
             hookResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', {
+                    'tool_name': 'hook_generator',
+                    'tone': tone
+                });
+            }
         }, 500);
     });
 }
@@ -501,6 +537,13 @@ Format the final response in clean GitHub-Flavored Markdown.`;
             btnEnhancePrompt.disabled = false;
             
             promptResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', {
+                    'tool_name': 'prompt_enhancer',
+                    'target_ai': target
+                });
+            }
         }, 500);
     });
 }
@@ -595,6 +638,13 @@ if (btnGenTags) {
             btnGenTags.disabled = false;
             
             tagResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', {
+                    'tool_name': 'seo_tags_generator',
+                    'keyword': keyword
+                });
+            }
         }, 500);
     });
 }
@@ -687,6 +737,13 @@ if (btnGenTitles) {
             btnGenTitles.disabled = false;
             
             titleResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', {
+                    'tool_name': 'title_generator',
+                    'goal': goal
+                });
+            }
         }, 500);
     });
 }
@@ -814,6 +871,14 @@ if (btnBoostLink) {
 
             viralBoosterResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
             showToast('Viral Optimization Complete! Ready to distribute 🚀', 'fas fa-rocket');
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', {
+                    'tool_name': 'viral_link_booster',
+                    'link_type': linkType,
+                    'audience': audience
+                });
+            }
         }, 600);
     });
 }
