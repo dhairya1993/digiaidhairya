@@ -1,6 +1,6 @@
 # 🚀 DigiAi Dhairya - Complete SEO & Digital Marketing Strategy
 
-Welcome to the comprehensive Digital Marketing and SEO master plan tailored specifically for **DigiAi Dhairya** (`https://dhairya1993.github.io/digiaidhairya/`).
+Welcome to the comprehensive Digital Marketing and SEO master plan tailored specifically for **DigiAi Dhairya** (`https://digiaidhairya.in/`).
 
 ---
 
@@ -49,7 +49,7 @@ YouTube is the #1 long-form conversion engine for AI educators.
 In this video, I reveal how to use [AI Tool Name] to automate [specific task] in minutes.
 
 🚀 Get All Free Prompts from my Website:
-👉 https://dhairya1993.github.io/digiaidhairya/#prompts
+👉 https://digiaidhairya.in/#prompts
 
 📌 Timestamps:
 0:00 - Introduction & The Big Problem
@@ -61,7 +61,7 @@ In this video, I reveal how to use [AI Tool Name] to automate [specific task] in
 🔗 Connect with DigiAi Dhairya:
 📸 Instagram: https://www.instagram.com/digiai_dhairya/
 📘 Facebook: https://www.facebook.com/profile.php?id=61585233787216
-🌐 Official Website: https://dhairya1993.github.io/digiaidhairya/
+🌐 Official Website: https://digiaidhairya.in/
 
 #DigiAiDhairya #ArtificialIntelligence #AITutorials #ChatGPT #Midjourney #VideoEditing
 ```
@@ -84,7 +84,7 @@ In this video, I reveal how to use [AI Tool Name] to automate [specific task] in
 ### 🤖 The "Comment to DM" Automated Funnel (ManyChat)
 Use ManyChat or automated DM replies:
 - In your Reel caption: *"Comment **AI PACK** below and I will DM you the direct link to 50+ free prompts!"*
-- Automatic DM sends: `https://dhairya1993.github.io/digiaidhairya/#prompts`
+- Automatic DM sends: `https://digiaidhairya.in/#prompts`
 - **Result**: Massive boost in Instagram reel comments (which algorithm favors) + thousands of direct website visits.
 
 ---
@@ -113,6 +113,6 @@ Use ManyChat or automated DM replies:
    - Paste it into `index.html` inside the `<head>` section.
 2. **Google Search Console (GSC)**:
    - Visit [search.google.com/search-console](https://search.google.com/search-console)
-   - Add property: `https://dhairya1993.github.io/digiaidhairya/`
-   - Submit your sitemap: `https://dhairya1993.github.io/digiaidhairya/sitemap.xml`
+   - Add property: `https://digiaidhairya.in/`
+   - Submit your sitemap: `https://digiaidhairya.in/sitemap.xml`
    - This ensures Google indexes your site in 24-48 hours.

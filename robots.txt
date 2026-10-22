@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://dhairya1993.github.io/digiaidhairya/sitemap.xml
+Sitemap: https://digiaidhairya.in/sitemap.xml

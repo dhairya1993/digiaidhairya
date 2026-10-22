@@ -47,9 +47,9 @@ Copy and paste these exact details when submitting to any directory:
 * **Product / Tool Name**: 
   `DigiAi Dhairya - Free AI Creator Tools Studio`
 * **Website URL**: 
-  `https://dhairya1993.github.io/digiaidhairya/`
+  `https://digiaidhairya.in/`
 * **Direct Tools URL**: 
-  `https://dhairya1993.github.io/digiaidhairya/#tools`
+  `https://digiaidhairya.in/#tools`
 * **One-Line Tagline**: 
   `100% Free AI tools to generate viral hooks, boost video links, enhance prompts & generate YouTube SEO tags.`
 * **Pricing Model**: 
@@ -79,10 +79,10 @@ Key Features & Tools:
 1. Go to [https://search.google.com/search-console](https://search.google.com/search-console)
 2. Log in with your Google account.
 3. Choose **URL prefix** and enter:
-   `https://dhairya1993.github.io/digiaidhairya/`
+   `https://digiaidhairya.in/`
 4. Verify ownership (via HTML tag or GitHub repository file).
 5. In the left menu, click **Sitemaps**, enter `sitemap.xml`, and click **Submit**.
-6. Use the **URL Inspection tool** at the top, enter `https://dhairya1993.github.io/digiaidhairya/`, and click **"Request Indexing"**.
+6. Use the **URL Inspection tool** at the top, enter `https://digiaidhairya.in/`, and click **"Request Indexing"**.
 
 ### 2. Bing Webmaster Tools
 1. Go to [https://www.bing.com/webmasters](https://www.bing.com/webmasters)
@@ -118,7 +118,7 @@ So I coded a free tool suite for my community that runs directly in the browser:
 - 🏷️ YouTube SEO Tag & Hashtag Generator
 
 It's completely free, no signups or email required:
-https://dhairya1993.github.io/digiaidhairya/#tools
+https://digiaidhairya.in/#tools
 
 Would love your feedback on what features you want me to add next!
 ```
@@ -134,8 +134,8 @@ Update your profiles to drive organic search traffic:
   🤖 AI Content Creator & Tech Tips
   🚀 Free AI Tools Studio in link 👇
   🎬 Viral Hook Generator | AI Prompts | Video SEO
-  👉 https://dhairya1993.github.io/digiaidhairya/
+  👉 https://digiaidhairya.in/
   ```
 
 * **YouTube Channel Description & Pinned Links**:
-  Add **"Free AI Creator Tools Studio"** as your primary channel header link pointing to `https://dhairya1993.github.io/digiaidhairya/#tools`.
+  Add **"Free AI Creator Tools Studio"** as your primary channel header link pointing to `https://digiaidhairya.in/#tools`.

@@ -721,7 +721,7 @@ if (btnBoostLink) {
     btnBoostLink.addEventListener('click', () => {
         let url = viralUrlInput.value.trim();
         if (!url) {
-            url = 'https://dhairya1993.github.io/digiaidhairya/';
+            url = 'https://digiaidhairya.in/';
             viralUrlInput.value = url;
         }
 
