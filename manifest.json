@@ -1,0 +1,16 @@
+{
+  "name": "DigiAi Dhairya - AI Content & Prompts Hub",
+  "short_name": "DigiAi",
+  "description": "Master Artificial Intelligence with tutorials, battle-tested prompts, and AI tools curated by DigiAi Dhairya.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07070a",
+  "theme_color": "#9d4edd",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

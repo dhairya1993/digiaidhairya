@@ -1,0 +1,6 @@
+# Robots.txt for DigiAi Dhairya
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dhairya1993.github.io/digiaidhairya/sitemap.xml
