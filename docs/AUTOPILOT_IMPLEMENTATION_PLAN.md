@@ -14,8 +14,8 @@ Preserve the existing static frontend and add a server-side automation layer on 
 
 - Static website remains the public frontend.
 - Vercel Node.js Functions under `/api/*` provide authenticated server endpoints.
-- Supabase Postgres is the recommended durable store for content events, queue state, platform connections, publish attempts, and audit history. This is a proposed dependency and must be provisioned/approved before enabling it.
-- Vercel Cron invokes a protected worker endpoint to discover eligible events, prepare jobs, and publish due content. Every invocation is authenticated with a server-only cron secret.
+- The user's existing Supabase Postgres project is the intended durable store. The additive migration in `supabase/migrations/202611240001_autopilot_foundation.sql` creates only `autopilot_*` tables and does not replace existing application tables. It must be applied to the existing project before enabling the worker.
+- Vercel Cron invokes a protected worker endpoint. The current schedule is once daily (`0 3 * * *`, UTC) as a zero-additional-cost baseline compatible with Vercel Hobby cron limits. The worker checks the Asia/Kolkata daily campaign cap. Increase frequency only after confirming the Vercel plan supports it.
 - Media files are stored in an object-storage bucket with public, time-limited or stable URLs suitable for Meta's media fetch requirements.
 - AI generation and media rendering are separate pipeline stages. Never generate or publish inside a request that can time out.
 - Platform adapters isolate YouTube, Instagram, and Facebook API differences.
@@ -57,16 +57,18 @@ Never expose platform tokens or AI provider keys to browser JavaScript. Encrypt 
 
 ### Phase 0 — Readiness and accounts
 - Confirm the Vercel project connected to this repository and production domain.
-- Provision Supabase project and run migrations.
+- Use the user's existing Supabase project; do not create a duplicate project. Apply the additive migration in `supabase/migrations/202611240001_autopilot_foundation.sql`.
 - Create Google Cloud OAuth app and enable YouTube Data API.
 - Create Meta developer app; connect the Instagram Professional account and Facebook Page; request/configure required permissions and app review where required.
 - Select AI provider, text-to-speech/video rendering provider, and storage provider; establish spending limits.
 
-### Phase 1 — Backend foundation
-- Add TypeScript/Node Vercel Functions and server-only configuration.
-- Add Supabase schema, row-level security, service-role-only server access, and migrations.
-- Implement admin authentication, signed webhook/cron validation, event ingestion, deduplication, queue and audit log.
-- Add a dry-run mode that generates preview packages but cannot publish.
+### Phase 1 — Backend foundation (initial scaffold committed)
+- Added Node.js Vercel Functions under `api/autopilot/`.
+- Added Supabase REST helper, event ingestion endpoint, Gemini content-generation worker and database health endpoint.
+- Added additive Supabase migration with RLS enabled and no anon/authenticated table policies.
+- Added `.env.example` and secret exclusions in `.gitignore`.
+- Added Vercel Cron configuration; worker remains disabled by default until database setup is verified.
+- Remaining: admin authentication/dashboard, safe event producers from the actual site content workflows, and stronger queue claiming/locking before production volume.
 
 ### Phase 2 — Content generation and media
 - Build platform-specific prompt templates and factual validation.
@@ -114,3 +116,68 @@ Use the least-privilege scopes required for publishing. Do not paste secrets int
 - Global and per-platform pause stop future publishing immediately.
 - Every attempt is auditable and failures can be retried safely.
 - Existing public website pages and SEO URLs remain unchanged.
+
+
+## Implemented scaffold — setup checklist
+
+The current branch is `feature/social-autopilot-foundation`. The following files are present:
+
+- `supabase/migrations/202611240001_autopilot_foundation.sql`
+- `api/autopilot/_lib.js`
+- `api/autopilot/health.js`
+- `api/autopilot/events.js`
+- `api/autopilot/worker.js`
+- `vercel.json`
+- `.env.example`
+
+### Apply to the existing Supabase project
+
+1. Open the existing Supabase project (do not create another).
+2. Open SQL Editor and run the complete migration file above from this branch.
+3. Confirm the four `autopilot_*` tables appear: `autopilot_content_events`, `autopilot_campaigns`, `autopilot_publish_jobs`, and `autopilot_settings`.
+4. Keep `autopilot_settings.enabled=false` until Vercel environment variables and a test event are ready.
+
+### Configure Vercel environment variables
+
+Add these as server-only variables in the `digiaidhairya` Vercel project, for Preview and Production as appropriate:
+
+- `SUPABASE_URL` — existing project's Project URL.
+- `SUPABASE_SERVICE_ROLE_KEY` — existing project's service-role secret; never use the anon key here.
+- `AUTOPILOT_INGEST_SECRET` — long random secret for authenticated event ingestion.
+- `CRON_SECRET` — long random secret used by Vercel Cron.
+- `GEMINI_API_KEY` — Google AI Studio API key, if an eligible free quota is available.
+- `GEMINI_MODEL` — optional; default is `gemini-2.5-flash`.
+
+Do not commit real values, paste them into chat, or place them in browser JavaScript.
+
+### Initial endpoint checks
+
+- `GET /api/autopilot/health` — confirms server can query the new Supabase settings table.
+- `POST /api/autopilot/events` — accepts a JSON event only with `Authorization: Bearer <AUTOPILOT_INGEST_SECRET>`.
+- Vercel Cron calls `GET /api/autopilot/worker` with `Authorization: Bearer <CRON_SECRET>`.
+
+Example event body:
+
+```json
+{
+  "source_type": "tool",
+  "source_id": "sample-tool-slug",
+  "title": "New AI tool added",
+  "summary": "A short factual description based on the tool's verified listing.",
+  "canonical_url": "https://digiaidhairya.in/ai-tools/",
+  "category": "Productivity",
+  "content_hash": "replace-with-a-stable-sha256-hash",
+  "source_evidence": {
+    "source": "verified website content record"
+  }
+}
+```
+
+### Current limitations — do not enable public publishing yet
+
+- Existing database credentials have not been supplied to Vercel; database connectivity has not yet been verified.
+- The current static site content workflows have not yet been wired to emit events automatically. Event ingestion is available, but website-side event detection still needs implementation.
+- The Gemini worker creates text packages and storyboards only. It does not yet render image/video assets.
+- YouTube, Instagram and Facebook OAuth/publishing adapters are not implemented. No posts will be published by this scaffold.
+- Admin dashboard and token encryption/account storage are still pending.
+- Worker concurrency/atomic job claiming must be hardened before processing multiple concurrent events.
