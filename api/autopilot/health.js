@@ -1,27 +1,24 @@
-/**
- * DigiAi Dhairya AutoPilot — backend readiness endpoint.
- *
- * This endpoint intentionally exposes no secrets or account configuration.
- * It verifies that the Vercel Functions runtime is serving the API route.
- */
-module.exports = function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store");
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
+const { json, requireMethod, supabase } = require("./_lib");
 
-  if (req.method !== "GET") {
-    res.setHeader("Allow", "GET");
-    return res.status(405).json({
+module.exports = async function handler(req, res) {
+  if (!requireMethod(req, res, "GET")) return;
+  try {
+    await supabase("autopilot_settings?select=id&limit=1");
+    return json(res, 200, {
+      ok: true,
+      service: "digiai-dhairya-autopilot",
+      databaseConnected: true,
+      generationConfigured: Boolean(process.env.GEMINI_API_KEY),
+      publishingEnabled: false,
+      checkedAt: new Date().toISOString(),
+    });
+  } catch (error) {
+    return json(res, 503, {
       ok: false,
-      error: "METHOD_NOT_ALLOWED",
+      service: "digiai-dhairya-autopilot",
+      databaseConnected: false,
+      error: error.message,
+      checkedAt: new Date().toISOString(),
     });
   }
-
-  return res.status(200).json({
-    ok: true,
-    service: "digiai-dhairya-autopilot",
-    status: "foundation",
-    publishingEnabled: false,
-    databaseConnected: false,
-    checkedAt: new Date().toISOString(),
-  });
 };
