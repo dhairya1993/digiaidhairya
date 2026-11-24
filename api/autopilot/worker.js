@@ -1,4 +1,13 @@
-const { json, requireMethod, requireBearer, supabase } = require("./_lib");
+const { json, supabase } = require("./_lib");
+
+function kolkataDayStartUtc() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit",
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((p) => [p.type, p.value]));
+  // Asia/Kolkata is UTC+05:30.
+  return new Date(`${values.year}-${values.month}-${values.day}T00:00:00+05:30`).toISOString();
+}
 
 async function generateWithGemini(event) {
   const key = process.env.GEMINI_API_KEY;
@@ -15,7 +24,7 @@ Summary: ${event.summary}
 Category: ${event.category || "General"}
 Canonical URL: ${event.canonical_url || "Not provided"}
 Evidence: ${JSON.stringify(event.source_evidence || {})}
-Use natural Hinglish. Keep the script suitable for a 25–40 second vertical video. `;
+Use natural Hinglish. Keep the script suitable for a 25–40 second vertical video.`;
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -26,14 +35,18 @@ Use natural Hinglish. Keep the script suitable for a 25–40 second vertical vid
   });
   const payload = await response.json();
   if (!response.ok) throw new Error(`GEMINI_${response.status}: ${JSON.stringify(payload).slice(0, 500)}`);
-  const text = payload.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("") || "";
+  const text = payload.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "";
   if (!text) throw new Error("GEMINI_EMPTY_RESPONSE");
-  return JSON.parse(text.replace(/^\`\`\`json\s*/i, "").replace(/\`\`\`$/, ""));
+  return JSON.parse(text.replace(/^```json\s*/i, "").replace(/```$/, ""));
 }
 
 module.exports = async function handler(req, res) {
-  if (!requireMethod(req, res, "POST")) return;
-  if (!requireBearer(req, process.env.CRON_SECRET)) {
+  if (req.method !== "GET" && req.method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
+    return json(res, 405, { ok: false, error: "METHOD_NOT_ALLOWED" });
+  }
+  const expected = process.env.CRON_SECRET;
+  if (!expected || req.headers.authorization !== `Bearer ${expected}`) {
     return json(res, 401, { ok: false, error: "UNAUTHORIZED" });
   }
   try {
@@ -42,7 +55,15 @@ module.exports = async function handler(req, res) {
     if (!settings || !settings.enabled) {
       return json(res, 200, { ok: true, skipped: true, reason: "AUTOPILOT_DISABLED" });
     }
-    const events = await supabase("autopilot_content_events?status=eq.queued&select=*&order=priority.desc,discovered_at.asc&limit=2");
+
+    const startUtc = kolkataDayStartUtc();
+    const todayCampaigns = await supabase(`autopilot_campaigns?created_at=gte.${encodeURIComponent(startUtc)}&select=id`);
+    const remaining = Math.max(0, Number(settings.daily_campaign_limit || 2) - (todayCampaigns || []).length);
+    if (remaining === 0) {
+      return json(res, 200, { ok: true, skipped: true, reason: "DAILY_LIMIT_REACHED" });
+    }
+
+    const events = await supabase(`autopilot_content_events?status=eq.queued&select=*&order=discovered_at.asc&limit=${Math.min(remaining, 2)}`);
     const results = [];
     for (const event of events || []) {
       try {
@@ -62,7 +83,7 @@ module.exports = async function handler(req, res) {
               create_image: true,
               create_vertical_video: true,
               rendering_status: "not_configured",
-              note: "No paid media-rendering service is configured. Use branded templates or connect an approved free renderer.",
+              note: "No paid media-rendering service is configured. A free branded-template renderer is the next implementation stage.",
             },
           }]),
         });
@@ -79,7 +100,10 @@ module.exports = async function handler(req, res) {
         results.push({ event_id: event.id, status: "failed", error: error.message });
       }
     }
-    return json(res, 200, { ok: true, processed: results.length, results, publishing: "disabled_until_oauth_and_media_pipeline_are_configured" });
+    return json(res, 200, {
+      ok: true, processed: results.length, remaining_daily_capacity: Math.max(0, remaining - results.length),
+      results, publishing: "disabled_until_oauth_and_media_pipeline_are_configured",
+    });
   } catch (error) {
     return json(res, 500, { ok: false, error: "WORKER_FAILED", detail: error.message });
   }
